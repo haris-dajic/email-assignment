@@ -1,0 +1,82 @@
+# Node modules for Angular
+node_modules/
+dist/
+out-tsc/
+coverage/
+package-lock.json
+
+# Angular build artifacts
+.angular/
+
+# Log files
+*.log
+
+# Environment files
+src/environments/environment.ts
+src/environments/environment.prod.ts
+
+# .NET build artifacts
+bin/
+obj/
+*.suo
+*.user
+*.userprefs
+*.sln.ide
+
+# Visual Studio files
+.vscode/
+.vs/
+*.sln
+*.csproj.user
+*.dbmdl
+*.dbproj.schemaview
+
+# Visual Studio Code files
+.history/
+*.code-workspace
+
+# NuGet packages
+*.nupkg
+packages/
+*.snupkg
+
+# JetBrains Rider files
+.idea/
+*.sln.iml
+
+# ASP.NET temporary files
+AspnetCoreHostingModel/
+
+# Docker files
+*.dockerfile
+docker-compose.override.yml
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Backup files
+*.bak
+*.tmp
+
+# User-specific files
+*.pid
+*.seed
+*.cache
+*.sublime-workspace
+
+# Others
+*.pdb
+*.mdb
+*.exe
+*.dll
+*.class
+*.app
+*.o
+*.pyc
+*.pyo
+
+# Ignore these files if using JetBrains Rider
+.idea/
