@@ -1,0 +1,85 @@
+<div class="send-email">
+  <h1>Send email</h1>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+    <!--From Email -->
+    <mat-form-field>
+      <mat-label>From Email:</mat-label>
+      <input formControlName="fromEmail" matInput placeholder="From Email"
+             required>
+      <mat-error *ngFor="let error of getErrors(form.get('fromEmail')!,
+              'Email')">
+        {{ error }}
+      </mat-error>
+    </mat-form-field>
+
+    <!-- TO Email -->
+    <mat-form-field>
+      <mat-label>To Email:</mat-label>
+      <input formControlName="toEmail" matInput placeholder="To Email"
+             required>
+      <mat-error *ngFor="let error of getErrors(form.get('toEmail')!,
+        'Email')">
+        {{ error }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+      <mat-chip-grid #chipGrid aria-label="CC Emails">
+        <mat-chip-row *ngFor="let email of form.get('ccEmails')!.value; let i = index" (removed)="removeCcEmail(i)">
+          {{ email }}
+          <button matChipRemove aria-label="Remove email">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </mat-chip-grid>
+      <input
+        placeholder="New email..."
+        [matChipInputFor]="chipGrid"
+        (matChipInputTokenEnd)="addCcEmail($event)"
+      />
+    </mat-form-field>
+
+
+    <!-- Subject -->
+    <mat-form-field>
+      <mat-label>Subject:</mat-label>
+      <input formControlName="subject" matInput placeholder="Subject">
+    </mat-form-field>
+
+    <!-- Importance -->
+    <mat-form-field appearance="fill">
+      <mat-label>Select Email Importance</mat-label>
+      <mat-select formControlName="importance" required>
+        <mat-option *ngFor="let importance of emailImportanceOptions" [value]="importance">
+          {{ getEmailImportanceLabel(importance) }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngFor="let error of getErrors(form.get('importance')!,
+        'Email Importance')">
+        {{ error }}
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Content -->
+    <mat-form-field class="example-full-width">
+      <mat-label>Content</mat-label>
+      <textarea formControlName="content" matInput placeholder="Content..."></textarea>
+    </mat-form-field>
+
+    <div>
+      <button [disabled]="!form.valid" color="primary"
+              mat-flat-button
+              type="submit">
+        Send
+      </button>
+      <button color="secondary"
+              mat-flat-button
+              type="button"
+              (click)="openConfirmationDialog()"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

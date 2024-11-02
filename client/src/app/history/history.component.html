@@ -1,0 +1,38 @@
+<h1>History</h1>
+<p *ngIf="emails.data.length == 0"><em>There are no sent emails.</em></p>
+
+<div [hidden]="emails.data.length == 0">
+  <table mat-table [dataSource]="emails" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="fromEmail">
+      <th mat-header-cell *matHeaderCellDef> From </th>
+      <td mat-cell *matCellDef="let element"> {{element.fromEmail}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="toEmail">
+      <th mat-header-cell *matHeaderCellDef> To </th>
+      <td mat-cell *matCellDef="let element"> {{element.toEmail}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="subject">
+      <th mat-header-cell *matHeaderCellDef> Subject </th>
+      <td mat-cell *matCellDef="let element"> {{element.subject}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="content">
+      <th mat-header-cell *matHeaderCellDef> Content </th>
+      <td mat-cell *matCellDef="let element"> {{element.content}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator (page)="getData($event)"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 [pageSize]="5"
+                 showFirstLastButtons
+                 class="mat-elevation-z8"
+  >
+  </mat-paginator>
+</div>
